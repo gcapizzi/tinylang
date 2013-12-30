@@ -5,8 +5,10 @@ require 'tinylang/types'
 
 module Tiny
   class Transform < Parslet::Transform
-    rule(method_call: { object: simple(:object), method: simple(:method) }) do
-      MethodCall.new(object, method)
+    rule(method: simple(:method)) { method }
+
+    rule(method_call: { object: simple(:object), method_list: sequence(:method_list) }) do
+      MethodCall.new(object, method_list)
     end
 
     rule(expression_list: sequence(:expressions)) do

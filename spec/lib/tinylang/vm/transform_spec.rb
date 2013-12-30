@@ -11,11 +11,11 @@ describe Tiny::Transform do
   end
 
   it 'transforms method calls' do
-    method_call = subject.apply(method_call: { object: { integer: '123' }, method: 'double' })
+    method_call = subject.apply(method_call: { object: { integer: '123' }, method_list: ['double']})
 
     expect(method_call).to be_a(Tiny::MethodCall)
     expect(method_call.object).to be_a(Tiny::Integer)
-    expect(method_call.method).to eq('double')
+    expect(method_call.method_list).to eq(['double'])
   end
 
   it 'transforms expression lists' do

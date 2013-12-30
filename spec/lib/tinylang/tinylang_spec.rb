@@ -8,7 +8,7 @@ describe Tiny do
   subject { Tiny::Compiler.new(parser, transform) }
 
   it 'runs a program' do
-    program = "x = 42\n2.double()"
-    expect(subject.compile(program)).to eq('4')
+    program = "x = 42\n2.double().inc()"
+    expect(subject.compile(program)).to eq('5')
   end
 end

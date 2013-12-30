@@ -10,7 +10,7 @@ describe Tiny::Parser do
   end
 
   it 'parses method calls' do
-    expect(subject.parse('2.double()')).to eq(expressions(method_call(integer('2'), 'double')))
+    expect(subject.parse('2.double().inc()')).to eq(expressions(method_call(integer('2'), 'double', 'inc')))
   end
 
   it 'parses expression lists' do
@@ -31,8 +31,8 @@ describe Tiny::Parser do
     { integer: integer }
   end
 
-  def method_call(object, method)
-    { method_call: { object: object, method: method }}
+  def method_call(object, *method_list)
+    { method_call: { object: object, method_list: method_list.map { |method| { method: method }}}}
   end
 
   def assignment(variable, value)

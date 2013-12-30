@@ -1,14 +1,16 @@
 module Tiny
   class MethodCall
-    attr_reader :object, :method
+    attr_reader :object, :method_list
 
-    def initialize(object, method)
+    def initialize(object, method_list)
       @object = object
-      @method = method
+      @method_list = method_list
     end
 
     def compile
-      object.send(method).compile
+      method_list.reduce(object) do |result, method|
+        result.send(method)
+      end.compile
     end
   end
 end

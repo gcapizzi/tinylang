@@ -10,6 +10,10 @@ module Tiny
       Integer.new(2 * @value)
     end
 
+    def inc
+      Integer.new(1 + @value)
+    end
+
     def compile
       @value
     end
