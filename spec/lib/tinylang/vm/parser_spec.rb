@@ -4,14 +4,14 @@ require 'tinylang'
 
 describe Tiny::Parser do
   it 'parses integer literals' do
-    expect(subject.parse('123')).to eq(expressions(integer('123')))
     expect(subject.parse('  123  ')).to eq(expressions(integer('123')))
-    expect { subject.parse('abc') }.to raise_error(Parslet::ParseFailed)
   end
 
   it 'parses method calls' do
     parsed_method_call = subject.parse('2.method().other_method()')
     expect(parsed_method_call).to eq(expressions(method_call(integer('2'), 'method', 'other_method')))
+
+    expect(subject.parse('x.some_method()')).to eq(expressions(method_call(variable('x'), 'some_method')))
   end
 
   it 'parses expression lists' do
@@ -22,6 +22,10 @@ describe Tiny::Parser do
     expect(subject.parse('x = 42')).to eq(expressions(assignment('x', integer('42'))))
   end
 
+  it 'parses variables' do
+    expect(subject.parse('   x   ')).to eq(expressions(variable('x')))
+  end
+
   private
 
   def expressions(*expressions)
@@ -30,6 +34,10 @@ describe Tiny::Parser do
 
   def integer(integer)
     { integer: integer }
+  end
+
+  def variable(variable)
+    { variable: variable }
   end
 
   def method_call(object, *method_list)

@@ -32,4 +32,11 @@ describe Tiny::Transform do
     expect(assignment.variable).to eq('x')
     expect(assignment.value.value).to eq(42)
   end
+
+  it 'transforms variables' do
+    variable = subject.apply(variable: 'x')
+
+    expect(variable).to be_a(Tiny::Variable)
+    expect(variable.name).to eq('x')
+  end
 end
