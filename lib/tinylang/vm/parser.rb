@@ -11,7 +11,7 @@ module Tiny
 
     # things
     rule(:integer) { match('[0-9]').repeat(1).as(:integer) >> space }
-    rule(:identifier) { match('[a-z]').repeat(1) }
+    rule(:identifier) { match('[a-z_]').repeat(1) }
     rule(:variable) { identifier.as(:variable) >> space }
 
     # grammar
