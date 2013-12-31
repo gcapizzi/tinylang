@@ -7,6 +7,6 @@ module Tiny
       @value = value
     end
 
-    alias_method :compile, :value
+    alias_method :eval, :value
   end
 end

@@ -6,7 +6,7 @@ describe Tiny::Compiler do
   let(:parser) { double(Tiny::Parser) }
   let(:transform) { double(Tiny::Transform) }
   let(:parse_tree) { double(:parse_tree) }
-  let(:ast) { double(:ast, compile: result) }
+  let(:ast) { double(:ast, eval: result) }
   let(:program) { 'some program' }
   let(:result) { double(:result, to_s: 'result') }
 

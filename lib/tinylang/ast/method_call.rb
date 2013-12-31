@@ -7,7 +7,7 @@ module Tiny
       @method_chain = method_chain
     end
 
-    def compile
+    def eval
       method_chain.reduce(object) do |result, method|
         result.send(method)
       end

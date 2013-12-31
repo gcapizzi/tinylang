@@ -9,6 +9,6 @@ describe Tiny::MethodCall do
     method_call = Tiny::MethodCall.new(object, method_chain)
 
     object.stub_chain(*method_chain).and_return('result')
-    expect(method_call.compile).to eq('result')
+    expect(method_call.eval).to eq('result')
   end
 end

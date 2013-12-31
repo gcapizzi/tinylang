@@ -8,7 +8,7 @@ module Tiny
     def compile(source)
       parse_tree = @parser.parse(source)
       ast = @transform.apply(parse_tree)
-      ast.compile.to_s
+      ast.eval.to_s
     end
   end
 end

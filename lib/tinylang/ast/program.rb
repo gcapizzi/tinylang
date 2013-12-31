@@ -6,8 +6,8 @@ module Tiny
       @expressions = expressions
     end
 
-    def compile
-      @expressions.map(&:compile).last
+    def eval
+      @expressions.map(&:eval).last
     end
   end
 end
