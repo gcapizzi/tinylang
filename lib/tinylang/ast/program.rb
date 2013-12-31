@@ -1,5 +1,5 @@
 module Tiny
-  class ExpressionList
+  class Program
     attr_reader :expressions
 
     def initialize(expressions)

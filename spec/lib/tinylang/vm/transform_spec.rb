@@ -19,10 +19,10 @@ describe Tiny::Transform do
   end
 
   it 'transforms expression lists' do
-    expression_list = subject.apply(expression_list: [{ integer: '123' }, { integer: '456' }])
+    program = subject.apply(program: [{ integer: '123' }, { integer: '456' }])
 
-    expect(expression_list).to be_a(Tiny::ExpressionList)
-    expect(expression_list.expressions.count).to eq(2)
+    expect(program).to be_a(Tiny::Program)
+    expect(program.expressions.count).to eq(2)
   end
 
   it 'transforms assignments' do

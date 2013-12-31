@@ -12,8 +12,8 @@ module Tiny
       MethodCall.new(object, method_chain)
     end
 
-    rule(expression_list: sequence(:expressions)) do
-      ExpressionList.new(expressions)
+    rule(program: sequence(:expressions)) do
+      Program.new(expressions)
     end
 
     rule(assignment: { variable: simple(:variable),
