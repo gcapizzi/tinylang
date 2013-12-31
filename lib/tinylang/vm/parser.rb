@@ -15,9 +15,8 @@ module Tiny
     rule(:variable) { identifier.as(:variable) >> space }
 
     # grammar
-    rule(:method_chain) do
-      (dot >> identifier.as(:method) >> lparen >> rparen).repeat(1).as(:method_chain)
-    end
+    rule(:method) { identifier.as(:method) >> lparen >> rparen }
+    rule(:method_chain) { (dot >> method).repeat(1).as(:method_chain) }
 
     rule(:method_call) do
       ((integer | variable).as(:object) >> method_chain).as(:method_call)
