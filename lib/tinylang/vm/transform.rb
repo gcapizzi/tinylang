@@ -15,8 +15,8 @@ module Tiny
       ExpressionList.new(expressions)
     end
 
-    rule(assignment: subtree(:assignment)) do
-      Assignment.new(assignment[:variable], assignment[:value])
+    rule(assignment: { variable: simple(:variable), value: simple(:value) }) do
+      Assignment.new(variable, value)
     end
 
     rule(variable: simple(:variable)) do
