@@ -15,11 +15,22 @@ module Tiny
     rule(:variable) { identifier.as(:variable) >> space }
 
     # grammar
-    rule(:method_list) { (dot >> identifier.as(:method) >> lparen >> rparen).repeat(1).as(:method_list) }
-    rule(:method_call) { ((integer | variable).as(:object) >> method_list).as(:method_call) }
-    rule(:assignment) { (variable >> equal >> expression.as(:value)).as(:assignment) >> space }
+    rule(:method_chain) do
+      (dot >> identifier.as(:method) >> lparen >> rparen).repeat(1).as(:method_chain)
+    end
 
-    rule(:expression) { space >> (method_call | integer | assignment | variable) }
+    rule(:method_call) do
+      ((integer | variable).as(:object) >> method_chain).as(:method_call)
+    end
+
+    rule(:assignment) do
+      (variable >> equal >> expression.as(:value)).as(:assignment) >> space
+    end
+
+    rule(:expression) do
+      space >> (method_call | integer | assignment | variable)
+    end
+
     rule(:expression_list) { expression.repeat(0).as(:expression_list) }
     root(:expression_list)
   end

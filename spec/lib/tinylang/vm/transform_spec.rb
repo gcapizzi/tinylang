@@ -11,11 +11,11 @@ describe Tiny::Transform do
   end
 
   it 'transforms method calls' do
-    method_call = subject.apply(method_call: { object: { integer: '123' }, method_list: ['double']})
+    method_call = subject.apply(method_call: { object: { integer: '123' }, method_chain: ['double'] })
 
     expect(method_call).to be_a(Tiny::MethodCall)
     expect(method_call.object).to be_a(Tiny::Integer)
-    expect(method_call.method_list).to eq(['double'])
+    expect(method_call.method_chain).to eq(['double'])
   end
 
   it 'transforms expression lists' do
@@ -26,7 +26,7 @@ describe Tiny::Transform do
   end
 
   it 'transforms assignments' do
-    assignment = subject.apply(assignment: { variable: 'x', value: { integer: '42' }})
+    assignment = subject.apply(assignment: { variable: 'x', value: { integer: '42' } })
 
     expect(assignment).to be_a(Tiny::Assignment)
     expect(assignment.variable).to eq('x')

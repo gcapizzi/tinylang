@@ -40,11 +40,11 @@ describe Tiny::Parser do
     { variable: variable }
   end
 
-  def method_call(object, *method_list)
-    { method_call: { object: object, method_list: method_list.map { |method| { method: method }}}}
+  def method_call(object, *method_chain)
+    { method_call: { object: object, method_chain: method_chain.map { |method| { method: method } } } }
   end
 
   def assignment(variable, value)
-    { assignment: { variable: variable, value: value }}
+    { assignment: { variable: variable, value: value } }
   end
 end

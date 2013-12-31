@@ -4,7 +4,7 @@ require 'tinylang/ast'
 
 describe Tiny::ExpressionList do
   it 'evaluates all expressions, returns the return value of the last one' do
-    expressions = ['first', 'second', 'third'].map do |name|
+    expressions = %w(first second third).map do |name|
       expr_double = double("#{name}_expr")
       expr_double.should_receive(:compile).and_return(name)
       expr_double
