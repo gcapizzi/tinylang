@@ -10,7 +10,8 @@ describe Tiny::Parser do
   end
 
   it 'parses method calls' do
-    expect(subject.parse('2.method().other_method()')).to eq(expressions(method_call(integer('2'), 'method', 'other_method')))
+    parsed_method_call = subject.parse('2.method().other_method()')
+    expect(parsed_method_call).to eq(expressions(method_call(integer('2'), 'method', 'other_method')))
   end
 
   it 'parses expression lists' do
