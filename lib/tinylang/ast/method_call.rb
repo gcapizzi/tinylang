@@ -10,7 +10,7 @@ module Tiny
     def compile
       method_list.reduce(object) do |result, method|
         result.send(method)
-      end.compile
+      end
     end
   end
 end

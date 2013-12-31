@@ -14,10 +14,6 @@ module Tiny
       Integer.new(1 + @value)
     end
 
-    def compile
-      self
-    end
-
     def to_s
       @value.to_s
     end
