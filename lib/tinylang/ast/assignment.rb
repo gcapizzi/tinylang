@@ -7,6 +7,9 @@ module Tiny
       @value = value
     end
 
-    alias_method :eval, :value
+    def eval(scope)
+      scope.set(variable, value)
+      value
+    end
   end
 end

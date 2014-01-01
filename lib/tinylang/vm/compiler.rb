@@ -7,8 +7,9 @@ module Tiny
 
     def compile(source)
       parse_tree = @parser.parse(source)
-      ast = @transform.apply(parse_tree)
-      ast.eval.to_s
+      program = @transform.apply(parse_tree)
+      scope = Scope.new
+      program.eval(scope).to_s
     end
   end
 end

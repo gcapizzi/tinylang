@@ -7,8 +7,9 @@ module Tiny
       @method_chain = method_chain
     end
 
-    def eval
-      method_chain.reduce(object) do |result, method|
+    def eval(scope)
+      target = object.eval(scope)
+      method_chain.reduce(target) do |result, method|
         result.send(method)
       end
     end

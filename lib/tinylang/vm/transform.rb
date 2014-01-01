@@ -18,11 +18,11 @@ module Tiny
 
     rule(assignment: { variable: simple(:variable),
                        value: simple(:value) }) do
-      Assignment.new(variable, value)
+      Assignment.new(String(variable), value)
     end
 
     rule(variable: simple(:variable)) do
-      Variable.new(variable)
+      Variable.new(String(variable))
     end
 
     # literals
