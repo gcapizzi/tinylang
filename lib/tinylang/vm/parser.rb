@@ -30,7 +30,7 @@ module Tiny
       space >> (method_call | integer | assignment | variable)
     end
 
-    rule(:program) { expression.repeat(0).as(:program) }
+    rule(:program) { expression.repeat(0).as(:program) >> space }
     root(:program)
   end
 end
