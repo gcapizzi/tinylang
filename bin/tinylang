@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.expand_path(File.join(File.dirname(__FILE__), '../lib'))
+
+require 'tinylang'
+
+source = File.read(ARGV.first)
+
+parser = Tiny::Parser.new
+transform = Tiny::Transform.new
+compiler = Tiny::Compiler.new(parser, transform)
+
+puts compiler.compile(source)
