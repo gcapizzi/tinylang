@@ -1,0 +1,1 @@
+require 'tinylang/builtin/integer'

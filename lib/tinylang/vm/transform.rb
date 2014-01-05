@@ -1,7 +1,7 @@
 require 'parslet'
 
 require 'tinylang/ast'
-require 'tinylang/types'
+require 'tinylang/builtin'
 
 module Tiny
   class Transform < Parslet::Transform

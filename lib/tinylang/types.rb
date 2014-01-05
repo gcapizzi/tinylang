@@ -1,1 +1,0 @@
-require 'tinylang/types/integer'
