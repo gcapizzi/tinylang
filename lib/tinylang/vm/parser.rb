@@ -8,11 +8,13 @@ module Tiny
     rule(:lparen) { str('(') }
     rule(:rparen) { str(')') }
     rule(:equal) { str('=') }
+    rule(:quote) { str('"') }
 
     # things
     rule(:integer) { match('[0-9]').repeat(1).as(:integer) >> space }
     rule(:identifier) { match('[a-z_]').repeat(1) }
     rule(:variable) { identifier.as(:variable) >> space }
+    rule(:string) { quote >> match('[^"]').repeat(0).as(:string) >> quote >> space }
 
     # grammar
     rule(:method) { identifier.as(:method) >> lparen >> rparen }
@@ -27,7 +29,7 @@ module Tiny
     end
 
     rule(:expression) do
-      space >> (method_call | integer | assignment | variable)
+      space >> (method_call | integer | string | assignment | variable)
     end
 
     rule(:program) { expression.repeat(0).as(:program) >> space }

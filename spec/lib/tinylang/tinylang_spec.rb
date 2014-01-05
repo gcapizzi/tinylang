@@ -7,8 +7,13 @@ describe Tiny do
   let(:transform) { Tiny::Transform.new }
   let(:compiler) { Tiny::Compiler.new(parser, transform) }
 
-  it 'runs a program' do
+  it 'handles integers' do
     program = "x = 42\nx.double().inc()\n"
     expect(compiler.compile(program)).to eq('85')
+  end
+
+  it 'handles strings' do
+    program = "x = \"hello, world!\"\nx.length()"
+    expect(compiler.compile(program)).to eq('13')
   end
 end

@@ -30,5 +30,9 @@ module Tiny
     rule(integer: simple(:x)) do
       Integer.new(Integer(x))
     end
+
+    rule(string: simple(:x)) do
+      String.new(String(x))
+    end
   end
 end

@@ -7,6 +7,11 @@ describe Tiny::Parser do
     expect(subject.parse('  123  ')).to eq(program(int('123')))
   end
 
+  it 'parses string literals' do
+    expect(subject.parse('   "abc"   ')).to eq(program(str('abc')))
+    expect { subject.parse('"abc"def"') }.to raise_error(Parslet::ParseFailed)
+  end
+
   it 'parses method calls' do
     parsed_program = subject.parse('2.method().other_method()')
     expect(parsed_program).to eq(program(method_call(int('2'), 'method', 'other_method')))
@@ -34,6 +39,10 @@ describe Tiny::Parser do
 
   def int(integer)
     { integer: integer }
+  end
+
+  def str(string)
+    { string: string }
   end
 
   def var(variable)

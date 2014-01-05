@@ -10,6 +10,13 @@ describe Tiny::Transform do
     expect(integer.value).to eq(123)
   end
 
+  it 'transforms string literals' do
+    string = subject.apply(string: 'abc')
+
+    expect(string).to be_a(Tiny::String)
+    expect(string.value).to eq('abc')
+  end
+
   it 'transforms method calls' do
     method_call = subject.apply(method_call: { object: { integer: '123' }, method_chain: ['double'] })
 
