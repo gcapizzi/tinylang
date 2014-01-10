@@ -13,10 +13,12 @@ describe Tiny::Parser do
   end
 
   it 'parses method calls' do
-    parsed_program = subject.parse('2.method().other_method()')
-    expect(parsed_program).to eq(program(method_call(int('2'), 'method', 'other_method')))
+    parsed_program = subject.parse('2.method(param1, param2).other_method()')
+    expect(parsed_program).to eq(program(method_call(int('2'),
+                                                     method('method', var('param1'), var('param2')),
+                                                     method('other_method'))))
 
-    expect(subject.parse('x.some_method()')).to eq(program(method_call(var('x'), 'some_method')))
+    expect(subject.parse('x.some_method()')).to eq(program(method_call(var('x'), method('some_method'))))
   end
 
   it 'parses multi-line programs' do
@@ -49,15 +51,15 @@ describe Tiny::Parser do
     { variable: variable }
   end
 
-  def method_chain(methods)
-    methods.map { |method| { method: method } }
-  end
-
   def method_call(object, *methods)
-    { method_call: { object: object, method_chain: method_chain(methods) } }
+    { method_call: { object: object, method_chain: methods } }
   end
 
   def assignment(variable, value)
     { assignment: { variable: variable, value: value } }
+  end
+
+  def method(method, *params)
+    { method: method, params: params }
   end
 end

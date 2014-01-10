@@ -9,15 +9,17 @@ module Tiny
     rule(:rparen) { str(')') }
     rule(:equal) { str('=') }
     rule(:quote) { str('"') }
+    rule(:comma) { str(',') }
 
     # things
     rule(:integer) { match('[0-9]').repeat(1).as(:integer) >> space }
-    rule(:identifier) { match('[a-z_]').repeat(1) }
+    rule(:identifier) { match('[a-zA-Z0-9_]').repeat(1) }
     rule(:variable) { identifier.as(:variable) >> space }
     rule(:string) { quote >> match('[^"]').repeat(0).as(:string) >> quote >> space }
 
     # grammar
-    rule(:method) { identifier.as(:method) >> lparen >> rparen }
+    rule(:params) { (expression >> comma.maybe >> space).repeat(0).as(:params) >> space}
+    rule(:method) { identifier.as(:method) >> lparen >> params >> rparen }
     rule(:method_chain) { (dot >> method).repeat(1).as(:method_chain) }
 
     rule(:method_call) do

@@ -10,7 +10,7 @@ describe Tiny::Integer do
   end
 
   it 'evals to itself' do
-    expect(subject.eval).to eq(subject)
+    expect(subject.eval(nil)).to eq(subject)
   end
 
   describe '#double' do
@@ -25,6 +25,11 @@ describe Tiny::Integer do
     end
   end
 
+  describe '#plus' do
+    it 'adds an integer' do
+      expect(subject.plus(Tiny::Integer.new(3)).value).to eq(45)
+    end
+  end
   describe '#to_s' do
     it 'returns the value converted to a string' do
       expect(subject.to_s).to eq('42')

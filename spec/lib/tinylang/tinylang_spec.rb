@@ -8,8 +8,8 @@ describe Tiny do
   let(:compiler) { Tiny::Compiler.new(parser, transform) }
 
   it 'handles integers' do
-    program = "x = 42\nx.double().inc()\n"
-    expect(compiler.compile(program)).to eq('85')
+    program = "x = 42\nx.double().inc().plus(5.times(3))\n"
+    expect(compiler.compile(program)).to eq('100')
   end
 
   it 'handles strings' do

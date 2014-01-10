@@ -10,7 +10,8 @@ module Tiny
     def eval(scope)
       target = object.eval(scope)
       method_chain.reduce(target) do |result, method|
-        result.send(method)
+        method.bind(result)
+        method.eval(scope)
       end
     end
   end

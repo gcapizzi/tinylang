@@ -10,10 +10,16 @@ describe Tiny::MethodCall do
     evaled_object = double(:evaled_object)
     object.stub(:eval).with(scope).and_return(evaled_object)
 
-    method_chain = %w(one two three)
-    method_call = Tiny::MethodCall.new(object, method_chain)
+    first_method = double(:first_method)
+    first_method.should_receive(:bind).with(evaled_object)
+    first_method.stub(:eval).with(scope).and_return('first result')
 
-    evaled_object.stub_chain(*method_chain).and_return('result')
-    expect(method_call.eval(scope)).to eq('result')
+    second_method = double(:second_method)
+    second_method.should_receive(:bind).with('first result')
+    second_method.stub(:eval).with(scope).and_return('second result')
+
+    method_call = Tiny::MethodCall.new(object, [first_method, second_method])
+
+    expect(method_call.eval(scope)).to eq('second result')
   end
 end

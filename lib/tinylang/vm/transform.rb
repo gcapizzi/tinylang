@@ -5,7 +5,9 @@ require 'tinylang/builtin'
 
 module Tiny
   class Transform < Parslet::Transform
-    rule(method: simple(:method)) { method }
+    rule(method: simple(:method), params: sequence(:params)) do
+      Method.new(method, params)
+    end
 
     rule(method_call: { object: simple(:object),
                         method_chain: sequence(:method_chain) }) do

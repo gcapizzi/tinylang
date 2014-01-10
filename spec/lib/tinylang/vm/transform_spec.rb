@@ -17,12 +17,21 @@ describe Tiny::Transform do
     expect(string.value).to eq('abc')
   end
 
+  it 'transforms single method calls' do
+    params = ['one', 'two', 'three']
+    method = subject.apply(method: 'method', params: params)
+
+    expect(method).to be_a(Tiny::Method)
+    expect(method.params).to eq(params)
+  end
+
   it 'transforms method calls' do
-    method_call = subject.apply(method_call: { object: { integer: '123' }, method_chain: ['double'] })
+    method_call = subject.apply(method_call: { object: { integer: '123' }, method_chain: [{ method: 'double', params: []}] })
 
     expect(method_call).to be_a(Tiny::MethodCall)
     expect(method_call.object).to be_a(Tiny::Integer)
-    expect(method_call.method_chain).to eq(['double'])
+    expect(method_call.method_chain.size).to eq(1)
+    expect(method_call.method_chain.first).to be_a(Tiny::Method)
   end
 
   it 'transforms expression lists' do
