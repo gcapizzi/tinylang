@@ -30,9 +30,4 @@ describe Tiny::Integer do
       expect(subject.plus(Tiny::Integer.new(3)).value).to eq(45)
     end
   end
-  describe '#to_s' do
-    it 'returns the value converted to a string' do
-      expect(subject.to_s).to eq('42')
-    end
-  end
 end

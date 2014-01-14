@@ -13,7 +13,7 @@ describe Tiny do
   end
 
   it 'handles strings' do
-    program = "x = \"hello, world!\"\nx.length()"
-    expect(compiler.compile(program)).to eq('13')
+    program = "\"hello\".concat(\", world!\")"
+    expect(compiler.compile(program)).to eq('hello, world!')
   end
 end

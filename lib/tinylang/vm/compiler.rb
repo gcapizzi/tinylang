@@ -9,7 +9,7 @@ module Tiny
       parse_tree = @parser.parse(source)
       program = @transform.apply(parse_tree)
       scope = Scope.new
-      program.eval(scope).to_s
+      program.eval(scope).to_string.to_s
     end
   end
 end

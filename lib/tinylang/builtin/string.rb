@@ -7,7 +7,23 @@ module Tiny
     end
 
     def length
-      @value.length
+      Integer.new(@value.length)
+    end
+
+    def concat(other)
+      String.new(@value + other.value)
+    end
+
+    def to_string
+      self
+    end
+
+    def to_s
+      @value
+    end
+
+    def eval(scope)
+      self
     end
   end
 end

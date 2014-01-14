@@ -22,8 +22,10 @@ module Tiny
     rule(:method) { identifier.as(:method) >> lparen >> params >> rparen }
     rule(:method_chain) { (dot >> method).repeat(1).as(:method_chain) }
 
+    rule(:atomic_value) { integer | string | variable }
+
     rule(:method_call) do
-      ((integer | variable).as(:object) >> method_chain).as(:method_call)
+      (atomic_value.as(:object) >> method_chain).as(:method_call)
     end
 
     rule(:assignment) do

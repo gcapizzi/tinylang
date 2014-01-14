@@ -22,8 +22,8 @@ module Tiny
       Integer.new(@value + other.value)
     end
 
-    def to_s
-      @value.to_s
+    def to_string
+      String.new(@value)
     end
 
     def eval(scope)
