@@ -30,4 +30,19 @@ describe Tiny::Integer do
       expect(subject.plus(Tiny::Integer.new(3)).value).to eq(45)
     end
   end
+
+  describe '#times' do
+    it 'multiplies by an integer' do
+      expect(subject.times(Tiny::Integer.new(2)).value).to eq(84)
+    end
+  end
+
+  describe '#to_string' do
+    it 'returns the value converted to a Tiny::String' do
+      string = subject.to_string
+
+      expect(string).to be_a(Tiny::String)
+      expect(string.value).to eq('42')
+    end
+  end
 end

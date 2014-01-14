@@ -18,7 +18,8 @@ describe Tiny::Parser do
                                                      method('method', var('param1'), var('param2')),
                                                      method('other_method'))))
 
-    expect(subject.parse('x.some_method()')).to eq(program(method_call(var('x'), method('some_method'))))
+    expect(subject.parse('x.some_method()')).to eq(program(method_call(var('x'),
+                                                                       method('some_method'))))
   end
 
   it 'parses multi-line programs' do
