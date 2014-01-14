@@ -3,7 +3,7 @@ module Tiny
     attr_reader :value
 
     def initialize(value)
-      @value = value
+      @value = String(value)
     end
 
     def length

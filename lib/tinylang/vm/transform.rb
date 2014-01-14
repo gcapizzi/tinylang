@@ -27,7 +27,7 @@ module Tiny
 
     # literals
 
-    rule(integer: simple(:x)) { Integer.new(Integer(x)) }
-    rule(string: simple(:x)) { String.new(String(x)) }
+    rule(integer: simple(:x)) { Integer.new(x) }
+    rule(string: simple(:x)) { String.new(x) }
   end
 end
