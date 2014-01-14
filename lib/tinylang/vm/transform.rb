@@ -9,8 +9,7 @@ module Tiny
       Method.new(String(method), params)
     end
 
-    rule(method_call: { object: simple(:object),
-                        method_chain: sequence(:method_chain) }) do
+    rule(method_call: { object: simple(:object), method_chain: sequence(:method_chain) }) do
       MethodCall.new(object, method_chain)
     end
 
@@ -18,8 +17,7 @@ module Tiny
       Program.new(expressions)
     end
 
-    rule(assignment: { variable: simple(:variable),
-                       value: simple(:value) }) do
+    rule(assignment: { variable: simple(:variable), value: simple(:value) }) do
       Assignment.new(String(variable), value)
     end
 
@@ -29,12 +27,7 @@ module Tiny
 
     # literals
 
-    rule(integer: simple(:x)) do
-      Integer.new(Integer(x))
-    end
-
-    rule(string: simple(:x)) do
-      String.new(String(x))
-    end
+    rule(integer: simple(:x)) { Integer.new(Integer(x)) }
+    rule(string: simple(:x)) { String.new(String(x)) }
   end
 end
