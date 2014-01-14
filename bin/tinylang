@@ -5,9 +5,6 @@ $:.unshift File.expand_path(File.join(File.dirname(__FILE__), '../lib'))
 require 'tinylang'
 
 source = File.read(ARGV.first)
-
-parser = Tiny::Parser.new
-transform = Tiny::Transform.new
-compiler = Tiny::Compiler.new(parser, transform)
+compiler = Tiny::Compiler.new(Tiny::Parser.new, Tiny::Transform.new)
 
 puts compiler.compile(source)
