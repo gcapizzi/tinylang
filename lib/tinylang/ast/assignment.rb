@@ -8,8 +8,9 @@ module Tiny
     end
 
     def eval(scope)
-      scope.set(variable, value)
-      value
+      evaled_value = value.eval(scope)
+      scope.set(variable, evaled_value)
+      evaled_value
     end
   end
 end
