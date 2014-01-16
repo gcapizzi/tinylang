@@ -8,8 +8,8 @@ module Tiny
     def compile(source)
       parse_tree = @parser.parse(source)
       program = @transform.apply(parse_tree)
-      scope = Scope.new
-      program.eval(scope).to_string.to_s
+      scope = Scope.new('IO' => IO.new)
+      program.eval(scope)
     end
   end
 end

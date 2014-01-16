@@ -9,11 +9,11 @@ describe Tiny do
 
   it 'handles integers' do
     program = "x = 42\nx.double().inc().plus(5.times(3))\n"
-    expect(compiler.compile(program)).to eq('100')
+    expect(compiler.compile(program).value).to eq(100)
   end
 
   it 'handles strings' do
     program = "\"hello\".concat(\", world!\")"
-    expect(compiler.compile(program)).to eq('hello, world!')
+    expect(compiler.compile(program).value).to eq('hello, world!')
   end
 end

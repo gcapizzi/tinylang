@@ -8,7 +8,7 @@ describe Tiny::Compiler do
   let(:parse_tree) { double(:parse_tree) }
   let(:ast) { double(:ast) }
   let(:program) { 'some program' }
-  let(:result) { double(:result, to_string: double(:result, to_s: 'result')) }
+  let(:result) { double(:result) }
   let(:scope) { double(Tiny::Scope) }
 
   subject { Tiny::Compiler.new(parser, transform) }
@@ -22,6 +22,6 @@ describe Tiny::Compiler do
   end
 
   it 'compiles a program' do
-    expect(subject.compile(program)).to eq('result')
+    expect(subject.compile(program)).to eq(result)
   end
 end

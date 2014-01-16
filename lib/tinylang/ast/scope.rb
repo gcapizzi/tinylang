@@ -1,7 +1,7 @@
 module Tiny
   class Scope
-    def initialize
-      @values = {}
+    def initialize(values = {})
+      @values = values
     end
 
     def get(name)

@@ -7,4 +7,4 @@ require 'tinylang'
 source = File.read(ARGV.first)
 compiler = Tiny::Compiler.new(Tiny::Parser.new, Tiny::Transform.new)
 
-puts compiler.compile(source)
+compiler.compile(source)
