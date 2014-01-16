@@ -1,5 +1,5 @@
 module Tiny
-  class String
+  class String < Object
     attr_reader :value
 
     def initialize(value)
