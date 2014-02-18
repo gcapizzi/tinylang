@@ -33,7 +33,7 @@ module Tiny
     end
 
     rule(:expression) do
-      space >> (method_call | integer | string | assignment | variable)
+      space >> (method_call | assignment | atomic_value)
     end
 
     rule(:program) { expression.repeat(0).as(:program) >> space }
