@@ -34,6 +34,11 @@ describe Tiny::Parser do
     expect(subject.parse('   x   ')).to eq(program(var('x')))
   end
 
+  it 'parses expressions in parentheses' do
+    expect(subject.parse('(x = 5).to_string()')).to eq(program(method_call(assignment('x', int('5')),
+                                                                           method('to_string'))))
+  end
+
   private
 
   def program(*expressions)
